@@ -1,0 +1,59 @@
+
+GET http://localhost:3000/users/me
+
+###
+
+POST http://localhost:3000/signup
+Content-Type: application/json
+
+{
+    "email": "madashd@mail.ru",
+    "password": "123123123"
+    }
+
+###
+
+POST http://localhost:3000/signin
+Content-Type: application/json
+
+{
+    "email": "madashd@mail.ru",
+    "password": "123123123"
+    }
+
+###
+
+POST http://localhost:3000/movie
+Content-Type: application/json
+
+
+{
+"country": "страна создания фильма. Обязательное поле-строка",
+"director": "режиссёр фильма. Обязательное поле-строка",
+"duration": "99",
+"year": "2004",
+"description": "описание фильма. Обязательное поле-строка",
+"image": "https://avatars.mds.yandex.net/i?id=2a0000018103e48bff0caa498f7d55fe778c-925593-fast-images&n=13",
+"thumbnail": "https://storage.vsemayki.ru/images/0/1/1653/1653647/previews/people_201_ski_cape_front_white_500.jpg",
+"trailerLink": "https://storage.vsemayki.ru/images/0/1/1653/1653647/previews/people_201_ski_cape_front_white_500.jpg",
+"movieId":"123241231",
+"nameRU":"название фильма на русском языке. Обязательное поле-строка",
+"nameEN": "dsfdsdfsd"
+}
+
+
+###
+
+PATCH http://localhost:3000/users/me
+Content-Type: application/json
+
+{
+    "name": "dn",
+    "about": "sss"
+}
+
+
+http://localhost:3000/movies/629220a63cde416e9720030f
+Content-Type: application/json
+
+###
