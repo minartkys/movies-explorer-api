@@ -7,18 +7,11 @@ const NotFoundError = require('../errors/NotFoundError');
 const BadRequestError = require('../errors/BadRequestError');
 const ConflictingRequestError = require('../errors/ConflictingRequestError');
 
-const { NODE_ENV, JWT_SECRET } = process.env;
+const { JWT_SECRET } = require('../utils/config');
 
 module.exports.getUserMe = (req, res, next) => {
   User.findById(req.user._id)
-    .then((user) => {
-      if (user) {
-        res.status(200).send({ user });
-      }
-      return next(
-        new NotFoundError('Пользователь с указанным _id не найден.'),
-      );
-    })
+    .then((user) => res.send({ user }))
     .catch(next);
 };
 
@@ -35,8 +28,6 @@ module.exports.createUser = (req, res, next) => {
       email,
       password: hash,
     }))
-
-    .then((user) => User.findById(user.id))
     .then((user) => {
       res.status(200).send({ data: user });
     })
@@ -64,24 +55,19 @@ module.exports.login = (req, res, next) => {
 
   return User.findUserByCredentials(email, password)
     .then((user) => {
-      const token = jwt.sign(
-        { _id: user._id },
-        NODE_ENV === 'production' ? JWT_SECRET : 'the-secret-key',
-
-        {
-          expiresIn: '7d',
-        },
-      );
+      const token = jwt.sign({ _id: user._id }, JWT_SECRET, {
+        expiresIn: '7d',
+      });
       res.send({ token });
     })
     .catch(() => next(new AuthorizationError('Неправильные почта или пароль.')));
 };
 
 module.exports.updateUser = (req, res, next) => {
-  const { email, name } = req.body;
+  const { name, email } = req.body;
   User.findByIdAndUpdate(
     req.user._id,
-    { email, name },
+    { name, email },
     { new: true, runValidators: true },
   )
     .then((user) => {
@@ -99,7 +85,8 @@ module.exports.updateUser = (req, res, next) => {
             'Переданы некорректные данные при обновлении профиля.',
           ),
         );
+      } else {
+        next(err);
       }
-      next(err);
     });
 };

@@ -18,7 +18,9 @@ module.exports.deleteMovieById = (req, res, next) => {
       if (movie.owner._id.toString() !== req.user._id.toString()) {
         throw new ForbiddenError('Вы не можете удалить чужой фильм');
       }
-      Movie.findByIdAndRemove(req.params.movieId).then((deletedMovie) => res.send(deletedMovie));
+      return Movie.findByIdAndRemove(req.params.movieId).then(
+        (deletedMovie) => res.send(deletedMovie),
+      );
     })
     .catch((err) => {
       if (err.name === 'CastError') {
