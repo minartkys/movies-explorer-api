@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const helmet = require('helmet');
 const { errors } = require('celebrate');
 const error = require('./middlewares/error');
 const NotFoundError = require('./errors/NotFoundError');
@@ -13,6 +14,7 @@ const { PORT = 3000 } = process.env;
 
 const app = express();
 app.use(bodyParser.json());
+
 app.use(express.json());
 mongoose.connect(MONGO_URL, {
   useNewUrlParser: true,
@@ -33,6 +35,7 @@ app.use(
 app.use(routes);
 app.use('*', (req, res, next) => next(new NotFoundError('404 Not Found')));
 app.use(errorLogger);
+app.use(helmet());
 app.use(errors());
 app.use(error);
 
