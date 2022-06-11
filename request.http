@@ -3,7 +3,7 @@ GET http://localhost:3000/users/me
 
 ###
 
-POST http://localhost:3001/signup
+POST https://api.minartkys.movie.nomoreparties.sbs/signup
 Content-Type: application/json
 
 {
