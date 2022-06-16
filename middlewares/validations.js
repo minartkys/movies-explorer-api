@@ -25,17 +25,17 @@ const regValid = celebrate({
 
 const addMovieValid = celebrate({
   body: Joi.object().keys({
-    country: Joi.string().required().min(2).max(50),
-    director: Joi.string().required().min(2).max(50),
+    country: Joi.string().required().min(2).max(100),
+    director: Joi.string().required().min(2).max(100),
     duration: Joi.number().required().min(1).max(1000),
     year: Joi.string().required().min(2).max(4),
-    description: Joi.string().required().min(1).max(5000),
+    description: Joi.string().required().min(1).max(50000),
     image: Joi.string().required().custom(checkValidUrl),
     trailerLink: Joi.string().required().custom(checkValidUrl),
     thumbnail: Joi.string().required().custom(checkValidUrl),
     movieId: Joi.number().required(),
-    nameRU: Joi.string().required().min(1).max(100),
-    nameEN: Joi.string().required().min(1).max(100),
+    nameRU: Joi.string().required().min(1).max(300),
+    nameEN: Joi.string().required().min(1).max(300),
   }),
 });
 

@@ -23,9 +23,8 @@ app.use(requestLogger);
 const allowedCors = [
   'http://localhost:3001',
   'http://localhost:3000',
-  'https://domainname.students.nomoredomains.xyz',
-  'https://domainname.minartkys.nomoredomains.xyz/',
-  'https://domainname.minartkys.nomoredomains.xyz',
+  'https://minartkys.movie.nomoreparties.sbs/',
+  'https://minartkys.movie.nomoreparties.sbs',
 ];
 app.use(
   cors({

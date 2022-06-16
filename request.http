@@ -1,20 +1,20 @@
 
-GET http://localhost:3000/users/me
+GET http://localhost:3001/users/me
 
 ###
 
-POST https://api.minartkys.movie.nomoreparties.sbs/signup
+POST http://localhost:3001/signup
 Content-Type: application/json
 
 {
     "name": "asdasdas",
-    "email": "asmdasd@mail.ru",
+    "email": "asmdassssssssd@mail.ru",
     "password": "123123123"
     }
 
 ###
 
-POST http://localhost:3000/signin
+POST http://localhost:3001/signin
 Content-Type: application/json
 
 {

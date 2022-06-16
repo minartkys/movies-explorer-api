@@ -11,7 +11,7 @@ const { JWT_SECRET } = require('../utils/config');
 
 module.exports.getUserMe = (req, res, next) => {
   User.findById(req.user._id)
-    .then((user) => res.send({ user }))
+    .then((user) => res.send(user))
     .catch(next);
 };
 
